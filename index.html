@@ -1,1 +1,27 @@
-hello, world!
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+    </head>
+    <body>
+        <a href="https://github.com/daveyproctor"> Github2 </a>
+        <a href="https://linkedin.com/in/daveyproctor"> LinkedIn </a>
+        <a href="resume.pdf"> Resume </a>
+        <svg id="svg" style="width:100%;height:800px"/>
+    </body>
+    <script>
+
+        var svg = d3.select('#svg');
+
+        var rect = svg.append('circle')
+           .attr('cx', 200)
+           .attr('cy', 200)
+           .attr('r', 50)
+           .style('fill', 'blue');
+
+        rect.transition()
+            .duration(1000)
+            .attr('cx', 500);
+
+    </script>
+</html>
