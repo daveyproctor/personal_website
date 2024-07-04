@@ -1,28 +1,150 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <script src="https://d3js.org/d3.v4.min.js"></script>
-    </head>
-    <body>
-        <h1>Under Construction</h1>
-        <a href="https://github.com/daveyproctor" target="_blank"> Github </a>
-        <a href="https://linkedin.com/in/daveyproctor" target="_blank"> LinkedIn </a>
-        <a href="resume.pdf"> Resume </a>
-        <svg id="svg" style="width:100%;height:800px"/>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Mobile-Friendly Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            padding: 20px;
+        }
+        .carousel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+        .carousel img {
+            width: 100%;
+            display: none;
+        }
+        .carousel img.active {
+            display: block;
+        }
+        .carousel .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .carousel .arrow.left {
+            left: 10px;
+        }
+        .carousel .arrow.right {
+            right: 10px;
+        }
+        h2 {
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="carousel">
+            <button class="arrow left" onclick="previousImage()">&#9664;</button>
+            <img src="../photos/5e34a72c-208c-4320-ba21-d70185668aa4.jpg" alt="Image 1" class="active">
+            <img src="../photos/IMG_2498.JPEG" alt="Image 2">
+            <img src="../photos/IMG_5691.JPEG" alt="Image 3">
+            <img src="../photos/IMG_7755.JPEG" alt="Image 4">
+            <img src="../photos/IMG_9892.JPEG" alt="Image 5">
+
+            <button class="arrow right" onclick="nextImage()">&#9654;</button>
+        </div>
+
+        <h2>About Me</h2>
+        <ul>
+            <p>
+                I like to tackle hard challenges and think big. Since graduating from Yale in 2019 with a double 
+                major in Computer Science and Statistics, I have worked as a Field Consultant at Ab Initio. I've 
+                worked closely with enterprise customers on two continents, working on some of the very biggest problems that 
+                exist in the space of data and artificial intelligence.
+            </p>
+            <p>
+                I've also had the opportunity to "travel the world", with some highlights being Australia and New Zealand
+                in 2023 and South Africa in 2024. I speak C1 level German and B2 Spanish, and I love reading world literature
+                in its original language.
+            </p>
+            <p>
+                Please reach out to me on LinkedIn and follow my work on GitHub!
+            </p>
+            <li><a href="https://linkedin.com/in/daveyproctor" target="_blank">LinkedIn</a></li>
+            <li><a href="https://github.com/daveyproctor" target="_blank">Github</a></li>
+        </ul>
+
+        <h2>Publications</h2>
+        <ul>
+            <h3>
+                Text to SQL
+            </h3>
+            <li><a href="https://arxiv.org/abs/1906.02285">
+                SParC: Cross-Domain Semantic Parsing in Context
+            </a></li>
+            <li><a href="https://www.academia.edu/88268883/Column_Attention_in_SQLNet_Spider_Task_Architecture">
+                Column Attention in SQLNet Spider Task Architecture
+            </a></li>
+            <h3>
+                Computer Networks
+            </h3>
+            <li><a href="https://github.com/daveyproctor/Network-Algorithms/blob/main/Distributed_Computation_with_Mutual_Exclusion_and_Precedence_Constraints.pdf">
+                Distributed Computation with Mutual Exclusion and Precedence Constraints
+            </a></li>
+            <h3>
+                Political Science
+            </h3>
+            <li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3294793">
+                Bold Tweets: Female Politicians Shed Classical Language Norms
+            </a></li>
+        </ul>
+    </div>
+
     <script>
+        let currentImageIndex = 0;
+        const images = document.querySelectorAll('.carousel img');
 
-        var svg = d3.select('#svg');
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.classList.toggle('active', i === index);
+            });
+        }
 
-        var rect = svg.append('circle')
-           .attr('cx', 200)
-           .attr('cy', 200)
-           .attr('r', 50)
-           .style('fill', 'blue');
+        function previousImage() {
+            currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : images.length - 1;
+            showImage(currentImageIndex);
+        }
 
-        rect.transition()
-            .duration(1000)
-            .attr('cx', 500);
-
+        function nextImage() {
+            currentImageIndex = (currentImageIndex < images.length - 1) ? currentImageIndex + 1 : 0;
+            showImage(currentImageIndex);
+        }
     </script>
+</body>
 </html>
