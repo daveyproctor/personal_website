@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Mobile-Friendly Website</title>
+    <title>Davey Proctor's Personal Website</title>
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -72,7 +73,7 @@
         <div class="carousel">
             <button class="arrow left" onclick="previousImage()">&#9664;</button>
             <!-- <img src="photos/5e34a72c-208c-4320-ba21-d70185668aa4.jpg" alt="Image 1" class="active"> -->
-            <img src="photos/IMG_2498.JPEG" alt="Image 1">
+            <img src="photos/IMG_2498.JPEG" alt="Image 1" class="active">
             <img src="photos/IMG_5691.JPEG" alt="Image 2">
             <img src="photos/IMG_7755.JPEG" alt="Image 3">
             <!-- <img src="photos/IMG_9892.JPEG" alt="Image 5"> -->
@@ -134,6 +135,7 @@
         function showImage(index) {
             images.forEach((img, i) => {
                 img.classList.toggle('active', i === index);
+                img.style.transform = `translateX(${(i - index) * 100}%)`;
             });
         }
 
@@ -146,6 +148,36 @@
             currentImageIndex = (currentImageIndex < images.length - 1) ? currentImageIndex + 1 : 0;
             showImage(currentImageIndex);
         }
+
+        const carousel = document.querySelector('.carousel');
+        const hammer = new Hammer(carousel);
+
+        hammer.on('swipeleft', nextImage);
+        hammer.on('swiperight', previousImage);
+
+        // Initialize the first image position
+        showImage(currentImageIndex);
     </script>
+
+    <!-- <script>
+        let currentImageIndex = 0;
+        const images = document.querySelectorAll('.carousel img');
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.classList.toggle('active', i === index);
+            });
+        }
+
+        function previousImage() {
+            currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : images.length - 1;
+            showImage(currentImageIndex);
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex < images.length - 1) ? currentImageIndex + 1 : 0;
+            showImage(currentImageIndex);
+        }
+    </script> -->
 </body>
 </html>
