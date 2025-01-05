@@ -28,11 +28,13 @@
             width: 100%;
             max-width: 600px;
             margin: 0 auto 20px;
+            overflow: hidden;
         }
 
         .carousel img {
             width: 100%;
             display: none;
+            transition: transform 0.5s ease;
         }
 
         .carousel img.active {
@@ -153,6 +155,11 @@
                 max-width: 100%;
             }
 
+            .publications {
+                flex-direction: column;
+                gap: 15px;
+            }
+
             .publication-card {
                 width: 100%;
             }
@@ -205,7 +212,7 @@
                 <p>After graduating from Yale, I resisted the trend to move to San Francisco and join a big tech company / startup. I wanted to work closely with customers on a diverse range of business problems where dealing with data was a principle challenge.</p>
             </a>
         </div>
-        
+
 
         <h2>Publications</h2>
         <div class="publications">
@@ -256,6 +263,28 @@
             currentImageIndex = (currentImageIndex < images.length - 1) ? currentImageIndex + 1 : 0;
             showImage(currentImageIndex);
         }
+
+        // Swipe functionality
+        let startX = 0;
+        let endX = 0;
+
+        const carouselElement = document.querySelector('.carousel');
+
+        carouselElement.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        carouselElement.addEventListener('touchmove', (e) => {
+            endX = e.touches[0].clientX;
+        });
+
+        carouselElement.addEventListener('touchend', () => {
+            if (startX - endX > 50) {
+                nextImage();
+            } else if (endX - startX > 50) {
+                previousImage();
+            }
+        });
 
         showImage(currentImageIndex);
     </script>
