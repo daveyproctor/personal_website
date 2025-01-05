@@ -4,17 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Davey Proctor's Personal Website</title>
-    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #1e1e1e;
+            color: #e0e0e0;
             box-sizing: border-box;
         }
+
         .container {
             padding: 20px;
+            max-width: 900px;
+            margin: auto;
         }
+
         .carousel {
             display: flex;
             align-items: center;
@@ -24,13 +29,17 @@
             max-width: 600px;
             margin: 0 auto 20px;
         }
+
         .carousel img {
             width: 100%;
             display: none;
         }
+
         .carousel img.active {
             display: block;
+            border-radius: 10px;
         }
+
         .carousel .arrow {
             position: absolute;
             top: 50%;
@@ -42,29 +51,111 @@
             cursor: pointer;
             z-index: 10;
         }
+
         .carousel .arrow.left {
             left: 10px;
         }
+
         .carousel .arrow.right {
             right: 10px;
         }
-        h2 {
-            border-bottom: 2px solid #ccc;
-            padding-bottom: 5px;
+
+        .about-links a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #61dafb;
+            color: #1e1e1e;
+            border-radius: 5px;
+            margin: 5px 0;
+            transition: background-color 0.3s ease;
+            text-align: center;
         }
+
+        .about-links a:hover {
+            background-color: #4fa7e3;
+            color: #ffffff;
+            transform: scale(1.10);
+        }
+
+        h2 {
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 40px;
+        }
+
         ul {
             list-style-type: none;
             padding: 0;
         }
+
         li {
             margin: 10px 0;
         }
+
         a {
-            color: #0066cc;
+            color: #61dafb;
             text-decoration: none;
         }
+
         a:hover {
             text-decoration: underline;
+        }
+
+        .publications {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .publication-card {
+            background-color: #2e2e2e;
+            border-radius: 10px;
+            padding: 15px;
+            width: calc(100% - 20px);
+            max-width: 400px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .publication-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .publication-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .publication-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.2em;
+            color: #61dafb;
+        }
+
+        .publication-card p {
+            font-size: 0.9em;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        @media (max-width: 600px) {
+            .carousel {
+                max-width: 100%;
+            }
+
+            .publication-card {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -72,12 +163,9 @@
     <div class="container">
         <div class="carousel">
             <button class="arrow left" onclick="previousImage()">&#9664;</button>
-            <!-- <img src="photos/5e34a72c-208c-4320-ba21-d70185668aa4.jpg" alt="Image 1" class="active"> -->
             <img src="photos/IMG_2498.JPEG" alt="Image 1" class="active">
             <img src="photos/IMG_5691.JPEG" alt="Image 2">
             <img src="photos/IMG_7755.JPEG" alt="Image 3">
-            <!-- <img src="photos/IMG_9892.JPEG" alt="Image 5"> -->
-
             <button class="arrow right" onclick="nextImage()">&#9654;</button>
         </div>
 
@@ -97,41 +185,56 @@
             <p>
                 Please reach out to me on LinkedIn and follow my work on GitHub!
             </p>
-            <li><a href="https://linkedin.com/in/daveyproctor" target="_blank">LinkedIn</a></li>
-            <li><a href="https://github.com/daveyproctor" target="_blank">Github</a></li>
+            <div class="about-links">
+                <a href="https://linkedin.com/in/daveyproctor" target="_blank">LinkedIn</a>
+                <a href="https://github.com/daveyproctor" target="_blank">GitHub</a>
+            </div>            
         </ul>
 
+        <h2>Featured Articles</h2>
+        <div class="publications">
+            <a href="https://www.linkedin.com/pulse/2024-my-year-review-david-proctor-l6rdf/" target="_blank" class="publication-card">
+                <img src="photos/genai_webinar.png" alt="Placeholder">
+                <h3>2024 - My Year in Review</h3>
+                <p>I'm introducing my first-annual Year in Review! ... My work as a field consultant at Ab Initio this year has been all about enabling a smarter, faster, more robust, more intuitive, more scalable, and more sovereign data platform at existing and prospective customers.</p>
+            </a>
+            <a href="https://www.linkedin.com/posts/daveyproctor_hackberlin-stackit-genai-activity-7247312975764635648-bDVP?utm_source=share&utm_medium=member_desktop" target="_blank" class="publication-card">
+                <img src="photos/dataConSofia3.png" alt="Placeholder">
+                <h3>Five Years at Ab Initio</h3>
+                <p>I'm celebrating 5 years at Ab Initio! 🎉</p>
+                <p>After graduating from Yale, I resisted the trend to move to San Francisco and join a big tech company / startup. I wanted to work closely with customers on a diverse range of business problems where dealing with data was a principle challenge.</p>
+            </a>
+        </div>
+        
+
         <h2>Publications</h2>
-        <ul>
-            <h3>
-                Text to SQL
-            </h3>
-            <li><a href="https://arxiv.org/abs/1906.02285" target="_blank">
-                SParC: Cross-Domain Semantic Parsing in Context
-            </a></li>
-            <li><a href="https://www.academia.edu/88268883/Column_Attention_in_SQLNet_Spider_Task_Architecture" target="_blank">
-                Column Attention in SQLNet Spider Task Architecture
-            </a></li>
-            <h3>
-                Computer Networks
-            </h3>
-            <li><a href="https://github.com/daveyproctor/Network-Algorithms/blob/main/Distributed_Computation_with_Mutual_Exclusion_and_Precedence_Constraints.pdf"
-                target="_blank">
-                Distributed Computation with Mutual Exclusion and Precedence Constraints
-            </a></li>
-            <h3>
-                Mathematical Logic
-            </h3>
-            <li><a href="https://github.com/daveyproctor/mathematical_logic" target="_blank">
-                Coding Exercises Inspired by Enderton's Mathematical Introduction to Logic
-            </a></li>
-            <h3>
-                Political Science
-            </h3>
-            <li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3294793" target="_blank">
-                Bold Tweets: Female Politicians Shed Classical Language Norms
-            </a></li>
-        </ul>
+        <div class="publications">
+            <a href="https://arxiv.org/abs/1906.02285" target="_blank" class="publication-card">
+                <img src="photos/sparc.png" alt="Placeholder">
+                <h3>SParC: Cross-Domain Semantic Parsing in Context</h3>
+                <p>We present SParC, a dataset for cross-domain Semantic Parsing in Context. It consists of 4,298 coherent question sequences, obtained from controlled user interactions with 200 complex databases over 138 domains.</p>
+            </a>
+            <a href="https://www.academia.edu/88268883/Column_Attention_in_SQLNet_Spider_Task_Architecture" target="_blank" class="publication-card">
+                <img src="photos/column_attn.png" alt="Placeholder">
+                <h3>Column Attention in SQLNet Spider Task Architecture</h3>
+                <p>I experiment with a baseline SQLNet model applied to the Spider large-scale, complex, cross-domain dataset for semantic parsing in the form of text-to-SQL question answering.</p>
+            </a>
+            <a href="https://github.com/daveyproctor/Network-Algorithms/blob/main/Distributed_Computation_with_Mutual_Exclusion_and_Precedence_Constraints.pdf" target="_blank" class="publication-card">
+                <img src="photos/network_algs.png" alt="Placeholder">
+                <h3>Distributed Computation with Mutual Exclusion</h3>
+                <p>I propose a model of distributed parallel computation that observes both precedence and mutual-exclusion constraints...I suggest a simple "minimum computational unit" programmer-level technique that fits within existing frameworks to deal with both constraints.</p>
+            </a>
+            <a href="https://github.com/daveyproctor/mathematical_logic" target="_blank" class="publication-card">
+                <img src="photos/mathlogic2.png" alt="Placeholder">
+                <h3>Coding Exercises Inspired by Enderton's Mathematical Introduction to Logic</h3>
+                <p>Herbert B. Enderton wrote the standard university textbook on mathematical logic. At Yale I worked through this dense and enlightening work with the help of the remarkable professor Sun-Joo Shin. I invented these coding exercises as a bit of enrichment material to the textbook.</p>
+            </a>
+            <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3294793" target="_blank" class="publication-card">
+                <img src="photos/polyspeech.png" alt="Placeholder">
+                <h3>Bold Tweets: Female Politicians Shed Classical Language Norms</h3>
+                <p>This data suggests that female politicians, in attaining their positions, have shed much of the gendered language norms that may exist; meanwhile, Twitter followers are becoming increasingly (but not yet completely) equally supportive of women's powerful speech patterns.</p>
+            </a>
+        </div>
     </div>
 
     <script>
@@ -141,7 +244,6 @@
         function showImage(index) {
             images.forEach((img, i) => {
                 img.classList.toggle('active', i === index);
-                img.style.transform = `translateX(${(i - index) * 100}%)`;
             });
         }
 
@@ -155,15 +257,7 @@
             showImage(currentImageIndex);
         }
 
-        const carousel = document.querySelector('.carousel');
-        const hammer = new Hammer(carousel);
-
-        hammer.on('swipeleft', nextImage);
-        hammer.on('swiperight', previousImage);
-
-        // Initialize the first image position
         showImage(currentImageIndex);
     </script>
-
 </body>
 </html>
