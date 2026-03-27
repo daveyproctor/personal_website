@@ -1,0 +1,10 @@
+{
+  "name": "personal-website",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Local dev server for static personal_website files",
+  "scripts": {
+    "dev": "python3 -m http.server 4173",
+    "dev:host": "python3 -m http.server 4173 --bind 0.0.0.0"
+  }
+}
